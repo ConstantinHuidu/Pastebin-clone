@@ -22,7 +22,7 @@ router.get('/', (req, res) => {
 });
 
 //render new paste form
-router.get('/new', (req, res) => {
+router.get('/new', (req, res) => {  
     res.render('new_paste')
 })
 
@@ -46,13 +46,9 @@ router.get('/delete', (req, res) => {
     connection.query(
         "DELETE FROM pastes WHERE paste_id = ?", req.query.id, 
         (err, result) => {
-            connection.query(
-                "SELECT * FROM pastes",
-                (err, result) => {
-                    res.render('paste_list', { pasteList: result })
-                }
-            )
+            res.redirect('/pastes');
         }
+        
     ) 
 });
 module.exports = router
